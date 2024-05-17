@@ -1,3 +1,5 @@
+// Table extension, https://github.com/schulle4u/yellow-table
+
 document.addEventListener('DOMContentLoaded', function() {
   const tables = document.querySelectorAll('table[data-tableFunctions="true"]');
   tables.forEach(initTable);
@@ -91,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const totalPages = Math.ceil(visibleRows.length / rowsPerPage);
 
       const prevButton = document.createElement('button');
-      prevButton.innerText = 'Zurück';
+      prevButton.innerText = '&lt;&lt;';
       prevButton.disabled = currentPage === 1;
       prevButton.addEventListener('click', () => {
         if (currentPage > 1) {
@@ -120,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       const nextButton = document.createElement('button');
-      nextButton.innerText = 'Vorwärts';
+      nextButton.innerText = '&gt;&gt;';
       nextButton.disabled = currentPage === totalPages;
       nextButton.addEventListener('click', () => {
         if (currentPage < totalPages) {
