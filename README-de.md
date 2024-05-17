@@ -1,0 +1,59 @@
+<p align="right"><a href="README-de.md">Deutsch</a> &nbsp; <a href="README.md">English</a></p>
+
+# Table 0.9.1
+
+Erstellt Tabellen aus CSV-Daten.
+
+<p align="center"><img src="SCREENSHOT.png" alt="Bildschirmfoto"></p>
+
+## Wie man eine Erweiterung installiert
+
+[ZIP-Datei herunterladen](https://github.com/schulle4u/yellow-table/archive/refs/heads/main.zip) und in dein `system/extensions`-Verzeichnis kopieren. [Weitere Informationen zu Erweiterungen](https://github.com/annaesvensson/yellow-update/tree/main/README-de.md).
+
+## Wie man eine Tabellendatei anzeigt
+
+Erstelle eine `[table]`-Abkürzung. 
+
+Die folgenden Argumente sind verfügbar, mit Ausnahme des ersten Arguments sind alle Angaben optional:
+
+`FileName` = Name der Tabellendatei  
+`RowsPerPage` = Zeilenanzahl für die Paginierung  
+`Class` = Klasse für die HTML-Tabelle  
+
+Diese Erweiterung lädt eine Tabellendatei im CSV-Format und gibt sie als HTML-Tabelle aus. Für umfangreiche Datensätze stehen ein Zeilenfilter sowie Spaltensortierung und Paginierung zur Verfügung. Des Weiteren können CSV-Daten mittels eines Code-Blocks in markdown geladen werden. Falls du noch mehr Funktionen benötigst, gibt es [hier eine Erweiterung gleichen Namens](https://github.com/GiovanniSalmeri/yellow-table), entwickelt von Giovanni Salmeri. 
+
+## Beispiele
+
+Grundsätzliche Verwendung:
+
+    [table tapes.csv]
+
+Benutzerdefinierte Klasse: 
+
+    [table tapes.csv - MyTapes]
+
+Einen Markdown-Code-Block zum Anzeigen von Tabellendaten benutzen: 
+
+    ```table
+    Code,English Name,French Name
+    AD,Andorra,Andorre
+    AE,United Arab Emirates,Emirats arabes unis
+    AF,Afghanistan,Afghanistan
+    AG,Antigua and Barbuda,Antigua-et-Barbuda
+    AI,Anguilla,Anguilla
+    AL,Albania,Albanie
+    ```
+
+## Einstellungen
+
+Die folgenden Einstellungen können in der Datei `system/extensions/yellow-system.ini` vorgenommen werden:
+
+`TableDirectory` = Verzeichnis für Tabellendateien  
+`TableDelimiter` = Spaltentrenner, `auto` für automatische Erkennung  
+`TableFirstRowHeader` = Benutze die erste Zeile der Tabellendatei als Spaltenüberschrift, 1 oder 0  
+`TableFunctions` = Schaltet Filter-, Sortierungs und Paginierungsfunktionen ein, 1 oder 0  
+`TableRowsPerPage` = Zeilenanzahl für die Paginierung  
+
+## Entwickler
+
+Steffen Schultz. [Hilfe finden](https://datenstrom.se/de/yellow/help/).
