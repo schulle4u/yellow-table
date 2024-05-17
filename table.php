@@ -31,11 +31,10 @@ class YellowTable {
                 $this->yellow->page->error(500, "Table '$fileName' does not exist!");
             }
         }
-        if (substru($name, 0, 5)=="table" && $type=="code") {
-            list($language, $class, $id) = $this->getTableInformation($name);
-            if ($language=="table" && !is_string_empty($text)) {
-                $output = "<div class=\"".htmlspecialchars($language)."\"";
-                if (!is_string_empty($id)) $output .= " id=\"".htmlspecialchars($id)."\"";
+        if ($name=="table" && $type=="code") {
+            $htmlAttributes = $this->yellow->lookup->getHtmlAttributes(".table $attributes");
+            if (!is_string_empty($text)) {
+                $output = "<div".$htmlAttributes;
                 $output .= " style=\"overflow-x:auto;\">\n";
                 $output .= $this->getTableHtml($text, $rowsPerPage, $class);
                 $output .= "</div>\n";
@@ -104,16 +103,5 @@ class YellowTable {
             $delimiter = str_replace("\\t", "\t", $delimiter);
         }
         return $delimiter;
-    }
-    
-    // Return table information
-    public function getTableInformation($name) {
-        $language = $class = $id = "";
-        foreach (explode(" ", $name) as $token) {
-            if (substru($token, 0, 5)=="table" && is_string_empty($language)) $language = $token;
-            if (substru($token, 0, 1)==".") $class = $class." ".substru($token, 1);
-            if (substru($token, 0, 1)=="#") $id = substru($token, 1);
-        }
-        return array($language, $class, $id);
     }
 }

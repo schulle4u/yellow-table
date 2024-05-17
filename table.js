@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const totalPages = Math.ceil(visibleRows.length / rowsPerPage);
 
       const prevButton = document.createElement('button');
-      prevButton.innerText = '&lt;&lt;';
+      prevButton.innerText = '<<';
       prevButton.disabled = currentPage === 1;
       prevButton.addEventListener('click', () => {
         if (currentPage > 1) {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       const nextButton = document.createElement('button');
-      nextButton.innerText = '&gt;&gt;';
+      nextButton.innerText = '>>';
       nextButton.disabled = currentPage === totalPages;
       nextButton.addEventListener('click', () => {
         if (currentPage < totalPages) {
