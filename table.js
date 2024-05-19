@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const headers = table.querySelectorAll('th');
     const filterInput = document.createElement('input');
     const paginationDiv = document.createElement('div');
-    const rowsPerPage = parseInt(table.getAttribute('data-rowsPerPage')) || 10;
+    const rowsPerPageAttr = table.getAttribute('data-rowsPerPage');
+    const rowsPerPage = rowsPerPageAttr !== null ? parseInt(rowsPerPageAttr, 10) : 10;
 
     filterInput.setAttribute('type', 'text');
     filterInput.setAttribute('aria-label', 'Filter table');
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
       filterTable(table, filterInput.value);
       setupPagination(table, rowsPerPage); // Update pagination after filtering
     });
+
     setupPagination(table, rowsPerPage);
   }
 
@@ -78,64 +80,68 @@ document.addEventListener('DOMContentLoaded', function() {
 
     paginationDiv.innerHTML = '';
 
-    const showPage = (pageNum) => {
-      const startRow = (pageNum - 1) * rowsPerPage;
-      const endRow = startRow + rowsPerPage;
+    if (rowsPerPage > 0) {
+      const showPage = (pageNum) => {
+        const startRow = (pageNum - 1) * rowsPerPage;
+        const endRow = startRow + rowsPerPage;
 
-      visibleRows.forEach((row, index) => {
-        row.style.display = (index >= startRow && index < endRow) ? '' : 'none';
-      });
-    };
-
-    const updatePagination = () => {
-      paginationDiv.innerHTML = '';
-
-      const totalPages = Math.ceil(visibleRows.length / rowsPerPage);
-
-      const prevButton = document.createElement('button');
-      prevButton.innerText = '<<';
-      prevButton.disabled = currentPage === 1;
-      prevButton.addEventListener('click', () => {
-        if (currentPage > 1) {
-          currentPage--;
-          showPage(currentPage);
-          updatePagination();
-        }
-      });
-      paginationDiv.appendChild(prevButton);
-
-      for (let i = 1; i <= totalPages; i++) {
-        const pageLink = document.createElement('button');
-        pageLink.innerText = i;
-        pageLink.addEventListener('click', () => {
-          currentPage = i;
-          showPage(currentPage);
-          updatePagination();
+        visibleRows.forEach((row, index) => {
+          row.style.display = (index >= startRow && index < endRow) ? '' : 'none';
         });
+      };
 
-        pageLink.setAttribute('aria-label', `Page ${i}`);
-        if (i === currentPage) {
-          pageLink.setAttribute('aria-current', 'page');
+      const updatePagination = () => {
+        paginationDiv.innerHTML = '';
+
+        const totalPages = Math.ceil(visibleRows.length / rowsPerPage);
+
+        const prevButton = document.createElement('button');
+        prevButton.innerText = '<<';
+        prevButton.disabled = currentPage === 1;
+        prevButton.addEventListener('click', () => {
+          if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+            updatePagination();
+          }
+        });
+        paginationDiv.appendChild(prevButton);
+
+        for (let i = 1; i <= totalPages; i++) {
+          const pageLink = document.createElement('button');
+          pageLink.innerText = i;
+          pageLink.addEventListener('click', () => {
+            currentPage = i;
+            showPage(currentPage);
+            updatePagination();
+          });
+
+          pageLink.setAttribute('aria-label', `Page ${i}`);
+          if (i === currentPage) {
+            pageLink.setAttribute('aria-current', 'page');
+          }
+
+          paginationDiv.appendChild(pageLink);
         }
 
-        paginationDiv.appendChild(pageLink);
-      }
+        const nextButton = document.createElement('button');
+        nextButton.innerText = '>>';
+        nextButton.disabled = currentPage === totalPages;
+        nextButton.addEventListener('click', () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            showPage(currentPage);
+            updatePagination();
+          }
+        });
+        paginationDiv.appendChild(nextButton);
 
-      const nextButton = document.createElement('button');
-      nextButton.innerText = '>>';
-      nextButton.disabled = currentPage === totalPages;
-      nextButton.addEventListener('click', () => {
-        if (currentPage < totalPages) {
-          currentPage++;
-          showPage(currentPage);
-          updatePagination();
-        }
-      });
-      paginationDiv.appendChild(nextButton);
+        showPage(currentPage);
+      };
 
-      showPage(currentPage);
-    };
-
-    updatePagination();
+      updatePagination();
+    } else {
+      visibleRows.forEach(row => row.style.display = '');
+    }
   }
 });

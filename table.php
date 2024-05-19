@@ -12,7 +12,7 @@ class YellowTable {
         $this->yellow->system->setDefault("tableDelimiter", "auto");
         $this->yellow->system->setDefault("tableFirstRowHeader", "1");
         $this->yellow->system->setDefault("tableFunctions", "1");
-        $this->yellow->system->setDefault("tableRowsPerPage", "10");
+        $this->yellow->system->setDefault("tableRowsPerPage", "0");
     }
     
     // Handle page content element
@@ -22,7 +22,7 @@ class YellowTable {
             list($fileName, $rowsPerPage, $class) = $this->yellow->toolbox->getTextArguments($text);
             $fileName = $this->yellow->lookup->normalisePath($this->yellow->system->get("tableDirectory").$fileName);
             $fileData = $this->yellow->toolbox->readFile($fileName);
-            if (is_string_empty($rowsPer_page)) $rowsPerPage = $this->yellow->system->get("tableRowsPerPage");
+            if (is_string_empty($rowsPerPage)) $rowsPerPage = $this->yellow->system->get("tableRowsPerPage");
             if (!is_string_empty($fileData)) {
                 $output = "<div class=\"".htmlspecialchars($name)."-container\" style=\"overflow-x:auto;\">\n";
                 $output .= $this->getTableHtml($fileData, $rowsPerPage, $class);

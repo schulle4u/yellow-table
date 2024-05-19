@@ -17,7 +17,7 @@ Erstelle eine `[table]`-Abkürzung.
 Die folgenden Argumente sind verfügbar, mit Ausnahme des ersten Arguments sind alle Angaben optional:
 
 `FileName` = Name der Tabellendatei  
-`RowsPerPage` = Zeilenanzahl für die Paginierung  
+`RowsPerPage` = Zeilenanzahl für die Paginierung, ein Wert größer als 0 aktiviert die Funktion  
 `Class` = Klasse für die HTML-Tabelle  
 
 Diese Erweiterung lädt eine Tabellendatei im CSV-Format und gibt sie als HTML-Tabelle aus. Für umfangreiche Datensätze stehen ein Zeilenfilter sowie Spaltensortierung und Paginierung zur Verfügung. Des Weiteren können CSV-Daten mittels eines Code-Blocks in markdown geladen werden. Falls du noch mehr Funktionen benötigst, gibt es [hier eine Erweiterung gleichen Namens](https://github.com/GiovanniSalmeri/yellow-table), entwickelt von Giovanni Salmeri. 
@@ -52,7 +52,7 @@ Die folgenden Einstellungen können in der Datei `system/extensions/yellow-syste
 `TableDelimiter` = Spaltentrenner, `auto` für automatische Erkennung  
 `TableFirstRowHeader` = Benutze die erste Zeile der Tabellendatei als Spaltenüberschrift, 1 oder 0  
 `TableFunctions` = Schaltet Filter-, Sortierungs und Paginierungsfunktionen ein, 1 oder 0  
-`TableRowsPerPage` = Zeilenanzahl für die Paginierung  
+`TableRowsPerPage` = Zeilenanzahl für die Paginierung, ein Wert größer als 0 aktiviert die Funktion  
 
 ## Entwickler
 

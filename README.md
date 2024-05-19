@@ -17,7 +17,7 @@ Create a `[table]` shortcut.
 The following arguments are available, all but the first argument are optional:
 
 `FileName` = name of the csv table file  
-`RowsPerPage` = Number of rows for pagination  
+`RowsPerPage` = Number of rows for pagination, a value greater than 0 enables the function  
 `Class` = HTML table class  
 
 This extension loads a table file in CSV format and outputs a HTML table. For large tables you can enable row filtering, column sorting, and pagination functions. You can also load table data as code block in Markdown. If you need even more functionality, [here is another extension](https://github.com/GiovanniSalmeri/yellow-table) under the same name, developed by Giovanni Salmeri. 
@@ -52,7 +52,7 @@ The following settings can be configured in file `system/extensions/yellow-syste
 `TableDelimiter` = column delimiter, `auto` for automatic detection  
 `TableFirstRowHeader` = use first line of table file as table header, 1 or 0  
 `TableFunctions` = Enable row filtering, column sorting and pagination functions, 1 or 0  
-`TableRowsPerPage` = Number of rows for pagination  
+`TableRowsPerPage` = Number of rows for pagination, a value greater than 0 enables the function  
 
 ## Developer
 
