@@ -2,7 +2,7 @@
 // Table extension, https://github.com/schulle4u/yellow-table
 
 class YellowTable {
-    const VERSION = "0.9.1";
+    const VERSION = "0.9.2";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -19,13 +19,13 @@ class YellowTable {
     public function onParseContentElement($page, $name, $text, $attributes, $type) {
         $output = null;
         if ($name=="table" && ($type=="block" || $type=="inline")) {
-            list($fileName, $rowsPerPage, $class) = $this->yellow->toolbox->getTextArguments($text);
+            list($fileName, $rowsPerPage, $caption, $class) = $this->yellow->toolbox->getTextArguments($text);
             $fileName = $this->yellow->lookup->normalisePath($this->yellow->system->get("tableDirectory").$fileName);
             $fileData = $this->yellow->toolbox->readFile($fileName);
             if (is_string_empty($rowsPerPage)) $rowsPerPage = $this->yellow->system->get("tableRowsPerPage");
             if (!is_string_empty($fileData)) {
                 $output = "<div class=\"".htmlspecialchars($name)."-container\" style=\"overflow-x:auto;\">\n";
-                $output .= $this->getTableHtml($fileData, $rowsPerPage, $class);
+                $output .= $this->getTableHtml($fileData, $rowsPerPage, $caption, $class);
                 $output .= "</div>\n";
             } else {
                 $this->yellow->page->error(500, "Table '$fileName' does not exist!");
@@ -36,7 +36,7 @@ class YellowTable {
             if (!is_string_empty($text)) {
                 $output = "<div".$htmlAttributes;
                 $output .= " style=\"overflow-x:auto;\">\n";
-                $output .= $this->getTableHtml($text, $rowsPerPage, $class);
+                $output .= $this->getTableHtml($text, $rowsPerPage, $caption, $class);
                 $output .= "</div>\n";
             }
         }
@@ -54,12 +54,13 @@ class YellowTable {
     }
     
     // Return table data, HTML encoded
-    public function getTableHtml($fileData, $rowsPerPage, $class) {
+    public function getTableHtml($fileData, $rowsPerPage, $caption, $class) {
         $output = "";
         $class = trim("csv-table $class");
         $tableFunctions = $this->yellow->system->get("tableFunctions") ? "true" : "false";
         if (is_string_empty($rowsPerPage)) $rowsPerPage = $this->yellow->system->get("tableRowsPerPage");
         $output .= "<table class=\"".htmlspecialchars($class)."\" data-tableFunctions=\"".htmlspecialchars($tableFunctions)."\" data-rowsPerPage=\"".htmlspecialchars($rowsPerPage)."\">\n";
+        if (!is_string_empty($caption)) $output .= "<caption>".htmlspecialchars($caption)."</caption>\n";
         $row = $this->yellow->system->get("tableFirstRowHeader") ? 0 : 1;
         $delimiter = $this->getTableDelimiter($fileData);
         foreach ($this->yellow->toolbox->getTextLines($fileData) as $line) {

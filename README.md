@@ -1,6 +1,6 @@
 <p align="right"><a href="README-de.md">Deutsch</a> &nbsp; <a href="README.md">English</a></p>
 
-# Table 0.9.1
+# Table 0.9.2
 
 Create tables from CSV data.
 
@@ -18,6 +18,7 @@ The following arguments are available, all but the first argument are optional:
 
 `FileName` = name of the csv table file  
 `RowsPerPage` = Number of rows for pagination, a value greater than 0 enables the function  
+`Caption` = A short and helpful title for your table  
 `Class` = HTML table class  
 
 This extension loads a table file in CSV format and outputs a HTML table. For large tables you can enable row filtering, column sorting, and pagination functions. You can also load table data as code block in Markdown. If you need even more functionality, [here is another extension](https://github.com/GiovanniSalmeri/yellow-table) under the same name, developed by Giovanni Salmeri. 
@@ -28,9 +29,9 @@ Basic usage:
 
     [table tapes.csv]
 
-Use custom class: 
+Use custom class and caption: 
 
-    [table tapes.csv - MyTapes]
+    [table tapes.csv - "My tapes collection" MyTapes]
 
 Use a Markdown code block to display table data: 
 

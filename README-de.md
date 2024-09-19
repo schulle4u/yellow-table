@@ -1,6 +1,6 @@
 <p align="right"><a href="README-de.md">Deutsch</a> &nbsp; <a href="README.md">English</a></p>
 
-# Table 0.9.1
+# Table 0.9.2
 
 Erstellt Tabellen aus CSV-Daten.
 
@@ -18,6 +18,7 @@ Die folgenden Argumente sind verfügbar, mit Ausnahme des ersten Arguments sind 
 
 `FileName` = Name der Tabellendatei  
 `RowsPerPage` = Zeilenanzahl für die Paginierung, ein Wert größer als 0 aktiviert die Funktion  
+`Caption` = Ein kurzer und hilfreicher Titel für deine Tabelle  
 `Class` = Klasse für die HTML-Tabelle  
 
 Diese Erweiterung lädt eine Tabellendatei im CSV-Format und gibt sie als HTML-Tabelle aus. Für umfangreiche Datensätze stehen ein Zeilenfilter sowie Spaltensortierung und Paginierung zur Verfügung. Des Weiteren können CSV-Daten mittels eines Code-Blocks in markdown geladen werden. Falls du noch mehr Funktionen benötigst, gibt es [hier eine Erweiterung gleichen Namens](https://github.com/GiovanniSalmeri/yellow-table), entwickelt von Giovanni Salmeri. 
@@ -28,9 +29,9 @@ Grundsätzliche Verwendung:
 
     [table tapes.csv]
 
-Benutzerdefinierte Klasse: 
+Benutzerdefinierte Klasse und Caption: 
 
-    [table tapes.csv - MyTapes]
+    [table tapes.csv - "Meine Kassettensammlung" MyTapes]
 
 Einen Markdown-Code-Block zum Anzeigen von Tabellendaten benutzen: 
 
