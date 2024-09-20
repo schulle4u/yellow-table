@@ -59,6 +59,7 @@ class YellowTable {
         $class = trim("csv-table $class");
         $tableFunctions = $this->yellow->system->get("tableFunctions") ? "true" : "false";
         if (is_string_empty($rowsPerPage)) $rowsPerPage = $this->yellow->system->get("tableRowsPerPage");
+        if (is_string_empty($caption)) $caption = $this->yellow->page->get("tableCaption");
         $output .= "<table class=\"".htmlspecialchars($class)."\" data-tableFunctions=\"".htmlspecialchars($tableFunctions)."\" data-rowsPerPage=\"".htmlspecialchars($rowsPerPage)."\">\n";
         if (!is_string_empty($caption)) $output .= "<caption>".htmlspecialchars($caption)."</caption>\n";
         $row = $this->yellow->system->get("tableFirstRowHeader") ? 0 : 1;
