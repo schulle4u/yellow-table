@@ -2,7 +2,7 @@
 // Table extension, https://github.com/schulle4u/yellow-table
 
 class YellowTable {
-    const VERSION = "0.9.2";
+    const VERSION = "0.9.3";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -36,7 +36,7 @@ class YellowTable {
             if (!is_string_empty($text)) {
                 $output = "<div".$htmlAttributes;
                 $output .= " style=\"overflow-x:auto;\">\n";
-                $output .= $this->getTableHtml($text, $rowsPerPage, $caption, $class);
+                $output .= $this->getTableHtml($text, "", "", "");
                 $output .= "</div>\n";
             }
         }
@@ -65,7 +65,7 @@ class YellowTable {
         $row = $this->yellow->system->get("tableFirstRowHeader") ? 0 : 1;
         $delimiter = $this->getTableDelimiter($fileData);
         foreach ($this->yellow->toolbox->getTextLines($fileData) as $line) {
-            $data = str_getcsv($line, $delimiter);
+            $data = str_getcsv($line, $delimiter, "\"", "");
             if ($row==0) {
                 $output .= "<thead><tr>\n";
             } else {

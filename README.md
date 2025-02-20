@@ -1,6 +1,6 @@
 <p align="right"><a href="README-de.md">Deutsch</a> &nbsp; <a href="README.md">English</a></p>
 
-# Table 0.9.2
+# Table 0.9.3
 
 Create tables from CSV data.
 
