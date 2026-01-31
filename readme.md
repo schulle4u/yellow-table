@@ -1,8 +1,6 @@
-<p align="right"><a href="readme-de.md">Deutsch</a> &nbsp; <a href="readme.md">English</a></p>
-
 # Table 0.9.3
 
-Create tables from CSV data.
+Create tables from CSV data. Developed by Steffen Schultz.
 
 <p align="center"><img src="screenshot.png" alt="Screenshot"></p>
 
@@ -63,6 +61,4 @@ The following settings can be configured in file `system/extensions/yellow-syste
 `TableFunctions` = Enable row filtering, column sorting and pagination functions, 1 or 0  
 `TableRowsPerPage` = Number of rows for pagination, a value greater than 0 enables the function  
 
-## Developer
-
-Steffen Schultz. [Get help](https://datenstrom.se/yellow/help/).
+Do yu have questions? [Get help](https://datenstrom.se/yellow/help/).
